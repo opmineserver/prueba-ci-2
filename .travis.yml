@@ -14,7 +14,6 @@ matrix:
      script:
       - cd back-end
       - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B
-      - cd ..
  
      deploy:
        provider: heroku
