@@ -21,5 +21,8 @@ jobs:
       
      script:
       - cd front-end
+      - npm install
       - ls -a
       - ng build --prod
+     script:
+      - echo ===============================
