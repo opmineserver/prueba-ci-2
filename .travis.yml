@@ -16,7 +16,7 @@ matrix:
      jdk: oraclejdk8
      node_js: "node"
      
-     before_script:
+     install:
       - npm install -g @angular/cli
      
      script:
