@@ -12,20 +12,17 @@ cache:
   
 matrix:
   include:
-   - language: node_js
+   - language: java
+     jdk: oraclejdk8
      node_js: "node"
      
      before_script:
       - npm install -g @angular/cli
-      
-     script:
-      - npm run build
-  
-  
-   - language: java
-     jdk: oraclejdk8
      
      script:
+      - cd front-end
+      - npm run build
+      - cd ..
       - cd back-end
       - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B
  
