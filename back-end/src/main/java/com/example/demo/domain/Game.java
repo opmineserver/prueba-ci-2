@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,6 +29,7 @@ public class Game extends DomainEntity {
 	@NotNull
 	@NotBlank
 	@SafeHtml
+	@Column(unique = true)
 	public String getName() {
 		return name;
 	}

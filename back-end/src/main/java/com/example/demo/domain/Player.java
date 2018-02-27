@@ -1,12 +1,17 @@
 package com.example.demo.domain;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.SafeHtml;
 
-public class Player {
+@Entity
+@Access(AccessType.PROPERTY)
+public class Player extends DomainEntity {
 
 	public Player() {
 		super();
@@ -25,12 +30,12 @@ public class Player {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
+	@ManyToOne
 	public Game getGame() {
 		return game;
 	}
 	
-	@ManyToOne
 	public void setGame(Game game) {
 		this.game = game;
 	}
