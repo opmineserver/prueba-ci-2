@@ -21,7 +21,7 @@ matrix:
      
      script:
       - cd front-end
-      - npm run build
+      - ng build --prod
       - cd ..
       - cd back-end
       - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B
