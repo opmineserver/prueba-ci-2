@@ -21,14 +21,13 @@ jobs:
   include:
    - stage: Test
      language: node_js
-     
      script:
-      - cd front-end
-      - npm install
-      - ng build --prod
+      - echo ===============================================================
+      
    - stage: Test
      script:
       - echo ===============================================================
+      
    - stage: Package and Deploy
      script:
       - cd front-end
