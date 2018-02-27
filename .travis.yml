@@ -13,17 +13,13 @@ cache:
 jobs:
   include:
    - stage: Front-End
-     matrix:
-       include:
-        - language: node_js
-          node_js: node
-         
-          before_script:
-           - npm install -g @angular/cli
-          
-          script:
-           - cd front-end
-           - ls -a
-           - ng build --prod
-  
-
+     language: node_js
+     node_js: node
+     
+     before_script:
+      - npm install -g @angular/cli
+      
+     script:
+      - cd front-end
+      - ls -a
+      - ng build --prod
