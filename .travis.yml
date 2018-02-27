@@ -38,9 +38,12 @@ jobs:
      script:
       - cd front-end
       - npm install
-      - ng build --prod 
+      - npm run build
       - cd ..
       - cd back-end
+      - cd src/main/resources/static
+      - ls -a
+      - cd ../../../..
       - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B
      deploy:
        provider: heroku
