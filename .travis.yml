@@ -68,9 +68,10 @@ jobs:
       - cd front-end
       - npm install
       - npm run build
+      - ls -a
       - cd ..
       - cd back-end
-      - cd src/java/main/resources
+      - cd src/main/java/resources
       - ls -a
       - cd ../../../..
       #- mkdir -p target/classes
