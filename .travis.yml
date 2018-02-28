@@ -71,12 +71,7 @@ jobs:
       - npm run build
       - cd ..
       - cd back-end
-      - cd src/main/resources/static
-      - ls -a
-      - cd ../../../..
       - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B
-      - cd target
-      - jar xfv demo-0.0.1-SNAPSHOT.jar
      deploy:
        provider: heroku
        api-key: 

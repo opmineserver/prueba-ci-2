@@ -112,9 +112,9 @@
 		
 		<resources>
 			<resource>
-				<directory>src/main/resources/static/</directory>
+				<directory>src/main/resources/</directory>
 				<includes>
-					<include>*.*</include>
+					<include>**/*</include>
 				</includes>
 			</resource>
 		</resources>
