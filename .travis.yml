@@ -20,17 +20,34 @@ cache:
  
 jobs:
   include:
+   ###### TEST ANGULAR #####
    - stage: Test
      language: node_js
      if: type IN (pull_request)
+     before_script:
+      - npm install -g @angular/cli
      script:
-      - echo ===============================================================
+      - npm install
+      - ng test
       
+   ###### TEST MYSQL #####
    - stage: Test
      if: type IN (pull_request)
+     env:
+      - AUTO=create-drop
+      - DATABASE=jdbc:mysql://127.0.0.1:3306/dev_db?user=root&password=1234
+      - DATABASE_USER=root
+      - DATABASE_PASS=1234
+      - DIALECT=org.hibernate.dialect.MySQL5Dialect
+     services:
+      - mysql
+     before_script:
+      - mysql -e 'CREATE DATABASE IF NOT EXISTS test_db;'
+      - echo "USE mysql;\nUPDATE user SET password=PASSWORD('1234') WHERE user='root';\nFLUSH PRIVILEGES;\n" | mysql -u root
      script:
-      - echo ===============================================================
+      - mvn test -B
       
+   ###### DEPLOY #####
    - stage: Package and Deploy
      if: branch = master
      before_script:
@@ -50,4 +67,28 @@ jobs:
        api-key: 
          secure: $HEROKU_API_KEY
        app: prueba-ci-69
+       
+   ###### DEPLOY 2 #####
+   - stage: Package and Deploy
+     if: branch = master
+     before_script:
+      - npm install -g @angular/cli
+     script:
+      - cd front-end
+      - npm install
+      - npm run build
+      - cd ..
+      - cd back-end
+      - cd src/main/resources/static
+      - ls -a
+      - cd ../../../..
+      - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B
+     deploy:
+       provider: releases
+       api-key: 
+         secure: $API_KEY
+       file: back-end/target/demo-0.0.1-SNAPSHOT.jar
+       skip_cleanup: true
+       on:
+         tags: true
    
