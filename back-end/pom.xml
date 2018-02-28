@@ -114,7 +114,7 @@
 			<resource>
 				<directory>src/main/resources/static/</directory>
 				<includes>
-					<include>**/*</include>
+					<include>*.*</include>
 				</includes>
 			</resource>
 		</resources>
