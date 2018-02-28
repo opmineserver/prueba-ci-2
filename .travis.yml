@@ -71,7 +71,7 @@ jobs:
       - ls -a
       - cd ..
       - cd back-end
-      - cd src/main/java/resources
+      - cd src/main/resources
       - ls -a
       - cd ../../../..
       #- mkdir -p target/classes
