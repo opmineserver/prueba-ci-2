@@ -36,7 +36,6 @@ jobs:
      before_script:
       - npm install -g @angular/cli
      script:
-      - rm back-end/src/main/resources/.gitignore
       - cd front-end
       - npm install
       - npm run build
