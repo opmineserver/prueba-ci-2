@@ -4,11 +4,7 @@ jdk: oraclejdk8
 node_js: node
 
 git:
-  depth: 3
-
-services:
-  - mysql
-  - postgresql
+  depth: 2
 
 cache:
   directories:
@@ -47,6 +43,23 @@ jobs:
      script:
       - mvn test -B
       
+   ###### TEST POSTGRESQL #####
+   - stage: Test
+     if: type IN (pull_request)
+     env:
+      - AUTO=create-drop
+      - DATABASE=jdbc:postgresql://127.0.0.1:5432/dev_db
+      - DATABASE_USER=root
+      - DATABASE_PASS=1234
+      - DIALECT=org.hibernate.dialect.PostgreSQLDialect
+     services:
+      - postgresql
+     before_script:
+      - mysql -e 'CREATE DATABASE IF NOT EXISTS test_db;'
+      - echo "USE mysql;\nUPDATE user SET password=PASSWORD('1234') WHERE user='root';\nFLUSH PRIVILEGES;\n" | mysql -u root
+     script:
+      - mvn test -B
+      
    ###### DEPLOY #####
    - stage: Package and Deploy
      if: branch = master
@@ -62,31 +75,11 @@ jobs:
       - ls -a
       - cd ../../../..
       - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B
+      - cd traget
+      - jar xfv demo-0.0.1-SNAPSHOT.jar
      deploy:
        provider: heroku
        api-key: 
          secure: $HEROKU_API_KEY
        app: prueba-ci-69
-       
-   ###### DEPLOY 2 #####
-   - stage: Package and Deploy
-     if: branch = master
-     before_script:
-      - npm install -g @angular/cli
-     script:
-      - cd front-end
-      - npm install
-      - npm run build
-      - cd ..
-      - cd back-end
-      - cd src/main/resources/static
-      - ls -a
-      - cd ../../../..
-      - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B
-     deploy:
-       provider: releases
-       api-key: 
-         secure: $API_KEY
-       file: back-end/target/demo-0.0.1-SNAPSHOT.jar
-       skip_cleanup: true
    
