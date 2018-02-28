@@ -43,7 +43,7 @@ public class IndexControllers {
 		return sb.toString();
 	}
 	
-	@GetMapping("/file")
+	@GetMapping(value = "/file", produces = "application/octet-stream")
 	public @ResponseBody byte[] file(@RequestParam String path) {
 		try {
 			Path paths = Paths.get(path);
@@ -57,5 +57,10 @@ public class IndexControllers {
 			return sb.toString().getBytes();
 		}
 	}
+	
+//	@GetMapping("/path:(^/)*")
+//	public String index(@RequestParam String path) {
+//		return path;
+//	}
 	
 }
