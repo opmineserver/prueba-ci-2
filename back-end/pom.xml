@@ -112,7 +112,10 @@
 		
 		<resources>
 			<resource>
-				<directory>src/main/resources/static/**</directory>
+				<directory>src/main/resources/static/</directory>
+				<includes>
+					<include>**/*</include>
+				</includes>
 			</resource>
 		</resources>
 	</build>

@@ -62,7 +62,7 @@ jobs:
       
    ###### DEPLOY #####
    - stage: Package and Deploy
-     if: branch = master
+     if: branch = master AND type IN (push)
      before_script:
       - npm install -g @angular/cli
      script:
