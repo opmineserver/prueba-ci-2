@@ -15,6 +15,7 @@ cache:
    - $HOME/.m2
    - $HOME/.npm
    - ./front-end/node_modules
+   - ./node_modules
    
 branches:
   only:
