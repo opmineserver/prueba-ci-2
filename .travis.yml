@@ -16,18 +16,27 @@ cache:
    - $HOME/.npm
    - ./front-end/node_modules
    - ./node_modules
-   
-branches:
-  only:
-   - master
 
  
 jobs:
   include:
+   - stage: Test
+     language: node_js
+     if: type IN (pull_request)
+     script:
+      - echo ===============================================================
+      
+   - stage: Test
+     if: type IN (pull_request)
+     script:
+      - echo ===============================================================
+      
    - stage: Package and Deploy
+     if: branch = master
      before_script:
       - npm install -g @angular/cli
      script:
+      - rm back-end/src/main/resources/.gitignore
       - cd front-end
       - npm install
       - npm run build
