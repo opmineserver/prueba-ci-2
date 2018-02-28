@@ -16,7 +16,7 @@ cache:
  
 jobs:
   include:
-   ###### TEST ANGULAR #####
+   ###### TEST ANGULAR ######
    - stage: Test
      language: node_js
      if: type IN (pull_request)
@@ -26,12 +26,12 @@ jobs:
       - npm install
       - ng test
       
-   ###### TEST MYSQL #####
+   ###### TEST MYSQL ######
    - stage: Test
      if: type IN (pull_request)
      env:
       - AUTO=create-drop
-      - DATABASE=jdbc:mysql://127.0.0.1:3306/dev_db?user=root&password=1234
+      - DATABASE=jdbc:mysql://127.0.0.1:3306/test_db?user=root&password=1234
       - DATABASE_USER=root
       - DATABASE_PASS=1234
       - DIALECT=org.hibernate.dialect.MySQL5Dialect
@@ -43,24 +43,23 @@ jobs:
      script:
       - mvn test -B
       
-   ###### TEST POSTGRESQL #####
+   ###### TEST POSTGRESQL ######
    - stage: Test
      if: type IN (pull_request)
      env:
       - AUTO=create-drop
-      - DATABASE=jdbc:postgresql://127.0.0.1:5432/dev_db
-      - DATABASE_USER=root
-      - DATABASE_PASS=1234
+      - DATABASE=jdbc:postgresql://127.0.0.1:5432/test_db
+      - DATABASE_USER=postgres
+      - DATABASE_PASS=
       - DIALECT=org.hibernate.dialect.PostgreSQLDialect
      services:
       - postgresql
      before_script:
-      - mysql -e 'CREATE DATABASE IF NOT EXISTS test_db;'
-      - echo "USE mysql;\nUPDATE user SET password=PASSWORD('1234') WHERE user='root';\nFLUSH PRIVILEGES;\n" | mysql -u root
+      - psql -c 'create database test_db;' -U postgres
      script:
       - mvn test -B
       
-   ###### DEPLOY #####
+   ###### DEPLOY ######
    - stage: Package and Deploy
      if: branch = master AND type IN (push)
      before_script:
@@ -72,9 +71,11 @@ jobs:
       - cd ..
       - cd back-end
       - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B
+      - cd target
+      - jar xfv demo-0.0.1-SNAPSHOT.jar
      deploy:
        provider: heroku
        api-key: 
          secure: $HEROKU_API_KEY
-       app: prueba-ci-69
+       app: $HEROKU_APP_NAME
    
