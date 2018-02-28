@@ -70,8 +70,8 @@ jobs:
       - npm run build
       - cd ..
       - cd back-end
-      - mkdir -p target/classes
-      - cp -R src/main/resources/static target/classes
+      #- mkdir -p target/classes
+      #- cp -R src/main/resources/static target/classes
       - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B
      deploy:
        provider: heroku
