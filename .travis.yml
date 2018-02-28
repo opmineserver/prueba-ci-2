@@ -23,15 +23,6 @@ branches:
  
 jobs:
   include:
-   - stage: Test
-     language: node_js
-     script:
-      - echo ===============================================================
-      
-   - stage: Test
-     script:
-      - echo ===============================================================
-      
    - stage: Package and Deploy
      before_script:
       - npm install -g @angular/cli
