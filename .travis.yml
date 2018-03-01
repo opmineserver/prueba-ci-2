@@ -31,7 +31,7 @@ jobs:
      if: type IN (pull_request)
      env:
       - AUTO=create-drop
-      - DATABASE=jdbc:mysql://127.0.0.1:3306/test_db?user=root&password=1234
+      - DATABASE=jdbc:mysql://127.0.0.1:3306/test_db
       - DATABASE_USER=root
       - DATABASE_PASS=1234
       - DIALECT=org.hibernate.dialect.MySQL5Dialect
