@@ -77,6 +77,9 @@ jobs:
       #- mkdir -p target/classes
       #- cp -R src/main/resources/static target/classes
       - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B
+      - cd src/main/resources
+      - ls -a
+      - cd ../../..
      deploy:
        provider: heroku
        api-key: 
