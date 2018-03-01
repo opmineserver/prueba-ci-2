@@ -110,13 +110,11 @@
 			</plugin>
 			
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>cobertura-maven-plugin</artifactId>
-				<version>2.7</version>
+				<groupId>org.eluder.coveralls</groupId>
+				<artifactId>coveralls-maven-plugin</artifactId>
+				<version>4.3.0</version>
 				<configuration>
-					<format>xml</format>
-					<maxmem>256m</maxmem>
-					<aggregate>true</aggregate>
+					<repoToken>${env.REPOSITORY_API_KEY}</repoToken>
 				</configuration>
 			</plugin>
 			
