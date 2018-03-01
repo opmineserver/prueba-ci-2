@@ -79,6 +79,7 @@ jobs:
       - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B
       - cd target
       - jar cvf $JAR_NAME ../src/main/resources/static
+      - cd ..
      deploy:
        provider: heroku
        api-key: 
