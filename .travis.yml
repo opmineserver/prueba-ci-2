@@ -77,6 +77,7 @@ jobs:
       #- mkdir -p target/classes
       #- cp -R src/main/resources/static target/classes
       - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B
+      - jar cvf $JAR_NAME ../src/main/resources/static
       - cd src/main/resources
       - ls -a
       - cd ../../..
