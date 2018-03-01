@@ -38,7 +38,7 @@ jobs:
      if: type IN (pull_request)
      env:
       - AUTO=create-drop
-      - DATABASE=jdbc:postgresql://127.0.0.1:5432/test_db
+      - DATABASE=jdbc:postgresql://127.0.0.1:5432/test_db?user=root
       - DATABASE_USER=postgres
       - DATABASE_PASS=
       - DIALECT=org.hibernate.dialect.PostgreSQLDialect
