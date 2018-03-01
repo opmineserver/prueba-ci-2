@@ -15,16 +15,7 @@ cache:
 
  
 jobs:
-  include:
-   ###### TEST ANGULAR ######
-   - stage: Test
-     if: type IN (pull_request)
-     before_script:
-      - npm install -g @angular/cli
-     script:
-      - npm install
-      - ng test
-      
+  include:      
    ###### TEST MYSQL ######
    - stage: Test
      if: type IN (pull_request)
