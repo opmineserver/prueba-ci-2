@@ -8,6 +8,7 @@ import { InTextComponent } from './forms/in-text/in-text.component';
 import { InButtonComponent } from './forms/in-button/in-button.component';
 import { FormComponent } from './forms/form/form.component';
 import { TextGroupComponent } from './forms/text-group/text-group.component';
+import { JoinerResultComponent } from './joiner/joiner-result/joiner-result.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { TextGroupComponent } from './forms/text-group/text-group.component';
     InTextComponent,
     InButtonComponent,
     FormComponent,
-    TextGroupComponent
+    TextGroupComponent,
+    JoinerResultComponent
   ],
   imports: [
     BrowserModule
