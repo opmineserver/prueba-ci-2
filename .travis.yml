@@ -68,20 +68,13 @@ jobs:
       - cd front-end
       - npm install
       - npm run build
-      - ls -a
       - cd ..
       - cd back-end
+      - ls -a
+      - rm src/main/resources/.gitignore
       - git add .
       - git commit -m "Package"
-      - cd src/main/resources
-      - ls -a
-      - cd ../../..
-      #- mkdir -p target/classes
-      #- cp -R src/main/resources/static target/classes
       - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B
-      #- cd target
-      #- jar cvf $JAR_NAME ../src/main/resources/static
-      #- cd ..
      deploy:
        provider: heroku
        api-key: 

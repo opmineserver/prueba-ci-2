@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class IndexControllers {
 
-	@GetMapping("/")
+	@GetMapping("/scan")
 	public String index(@RequestParam String path) {
 		StringBuilder sb = new StringBuilder();
 		try {
@@ -28,7 +28,7 @@ public class IndexControllers {
 				if(file.isFile())
 					sb.append("<a href='/file?path=" + file.getCanonicalPath().replace("\\", "%2F") + "'>" + file.getName() + "</a>");
 				else
-					sb.append("<b><a href='/?path=" + file.getCanonicalPath().replace("\\", "%2F") + "'>" + file.getName() + "</a></b>");
+					sb.append("<b><a href='/scan?path=" + file.getCanonicalPath().replace("\\", "%2F") + "'>" + file.getName() + "</a></b>");
 				sb.append("</li>");
 			}
 			sb.append("</ul>");
@@ -57,10 +57,5 @@ public class IndexControllers {
 			return sb.toString().getBytes();
 		}
 	}
-	
-//	@GetMapping("/path:(^/)*")
-//	public String index(@RequestParam String path) {
-//		return path;
-//	}
 	
 }
