@@ -73,7 +73,7 @@ jobs:
       - cd back-end
       - cd src/main/resources
       - ls -a
-      - cd ../../../..
+      - cd ../../..
       #- mkdir -p target/classes
       #- cp -R src/main/resources/static target/classes
       - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B
