@@ -41,6 +41,7 @@ jobs:
       - mysql -e 'CREATE DATABASE IF NOT EXISTS test_db;'
       - echo "USE mysql;\nUPDATE user SET password=PASSWORD('1234') WHERE user='root';\nFLUSH PRIVILEGES;\n" | mysql -u root
      script:
+      - cd back-end
       - mvn test -B
       
    ###### TEST POSTGRESQL ######
@@ -57,6 +58,7 @@ jobs:
      before_script:
       - psql -c 'create database test_db;' -U postgres
      script:
+      - cd back-end
       - mvn test -B
       
    ###### DEPLOY ######
@@ -67,14 +69,18 @@ jobs:
      script:
       - cd front-end
       - npm install
-      - npm run build
-      - cd ..
-      - cd back-end
-      - ls -a
+      #- npm run build
+      - cd ../back-end
       - rm src/main/resources/.gitignore
       - git add .
       - git commit -m "Package"
       - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B
+     after_script:
+      - shopt -s extglob
+      - rm -rf !(target)
+      - cd target
+      - rm -rf !($JAR_NAME)
+      - cd ..
      deploy:
        provider: heroku
        api-key: 
