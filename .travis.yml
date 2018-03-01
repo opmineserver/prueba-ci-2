@@ -78,6 +78,8 @@ jobs:
       - cd target
       - rm -rf !($JAR_NAME)
       - cd ..
+      - git add .
+      - git commit -m "Clear"
      deploy:
        provider: heroku
        api-key: 
