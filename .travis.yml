@@ -71,15 +71,17 @@ jobs:
       - ls -a
       - cd ..
       - cd back-end
+      - git add .
+      - git commit -m "Package"
       - cd src/main/resources
       - ls -a
       - cd ../../..
       #- mkdir -p target/classes
       #- cp -R src/main/resources/static target/classes
       - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B
-      - cd target
-      - jar cvf $JAR_NAME ../src/main/resources/static
-      - cd ..
+      #- cd target
+      #- jar cvf $JAR_NAME ../src/main/resources/static
+      #- cd ..
      deploy:
        provider: heroku
        api-key: 
