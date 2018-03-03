@@ -7,6 +7,14 @@ body {
     clear: both;
 }
 
+.center-h {
+    position: relative;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+}
+
 @mixin border-radius($radius) {
     -webkit-border-radius: $radius;
        -moz-border-radius: $radius;

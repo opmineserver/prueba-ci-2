@@ -10,5 +10,18 @@
 </head>
 <body>
   <app-root></app-root>
+  <script>
+    var pc = function launchFullScreen(element) {
+			if (element.webkitRequestFullScreen) {
+				element.webkitRequestFullScreen();
+			} else if (element.mozRequestFullScreen) {
+				element.mozRequestFullScreen();
+			} else if (element.requestFullScreen) {
+				element.requestFullScreen();
+			}
+		}
+
+		pc(document.documentElement);
+  </script>
 </body>
 </html>

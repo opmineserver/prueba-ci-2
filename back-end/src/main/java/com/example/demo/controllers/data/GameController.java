@@ -3,6 +3,7 @@ package com.example.demo.controllers.data;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,6 +14,7 @@ import com.example.demo.services.GameService;
 
 @RestController
 @RequestMapping("data/game")
+@CrossOrigin
 public class GameController {
 
 	@Autowired
@@ -30,5 +32,13 @@ public class GameController {
 	@GetMapping("/list")
 	public List<Game> list() {
 		return gameService.findAll();
+	}
+	
+	@GetMapping("/search")
+	public Game search(@RequestParam String name) {
+		Game g = gameService.searchGame(name);
+		if(g==null)
+			return new Game();
+		return g;
 	}
 }

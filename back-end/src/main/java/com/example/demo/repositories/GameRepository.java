@@ -18,4 +18,6 @@ public interface GameRepository extends JpaRepository<Game, Integer> {
 	@Query("select p from Player p where p.game.id = ?1")
 	List<Player> findPlayers(int id);
 	
+	@Query("select g from Game g where g.name like ?1")
+	Game searchGame(String name);
 }

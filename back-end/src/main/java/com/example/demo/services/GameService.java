@@ -45,4 +45,8 @@ public class GameService {
 	public List<Player> findPlayers(int id) {
 		return gameRepository.findPlayers(id);
 	}
+	
+	public Game searchGame(String name) {
+		return gameRepository.searchGame(name);
+	}
 }
