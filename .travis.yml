@@ -74,8 +74,8 @@ jobs:
          strategy: git
          skip_cleanup: true
        - provider: releases
-         user: $GIT_USER
-         password: $GIT_PASS
+         api_key:
+           secure: $GIT_KEY
          file: "target/$APP_NAME-$APP_VERSION.jar"
          skip_cleanup: true
          name: "$APP_NAME-$APP_VERSION"
