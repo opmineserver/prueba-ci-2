@@ -72,9 +72,18 @@ jobs:
       - cd ..
       - git add .
       - git commit -m "Clear"
+      - ls
+     before_deploy:
+      - git config --local user.name "opmineserver"
+      - git config --local user.email "opmineserver@gmail.com"
+      - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
      deploy:
-       provider: heroku
-       api-key: 
-         secure: $HEROKU_API_KEY
-       app: $HEROKU_APP_NAME
+       - provider: heroku
+         api-key: 
+           secure: $HEROKU_API_KEY
+         app: $HEROKU_APP_NAME
+       - provider: releases
+         api_key: ccaec596a5d886e5bf67c2a0e6fc7b76a62cb985
+         file: "target/$JAR_NAME"
+         skip_cleanup: true
    
