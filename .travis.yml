@@ -68,6 +68,7 @@ jobs:
       - git commit -m "Package"
       - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B
       - auto-changelog -o temp.md -l false
+      - CHANGELOG=$(cat temp.md)
       - git tag -a v$APP_VERSION -F temp.md
       - rm temp.md
      deploy:
@@ -81,6 +82,7 @@ jobs:
            secure: $GIT_KEY
          file: "target/$APP_NAME-$APP_VERSION.jar"
          skip_cleanup: true
+         body: $CHANGELOG
          on:
            condition: $(git tag -l "$APP_VERSION") != $APP_VERSION
    
