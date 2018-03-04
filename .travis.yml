@@ -55,6 +55,7 @@ jobs:
      if: branch = master AND type IN (push)
      before_script:
       - npm install -g @angular/cli
+      - npm install -g auto-changelog
       - git config --local user.name "$GIT_USER"
       - git config --local user.email "$GIT_EMAIL"
      script:
@@ -66,6 +67,10 @@ jobs:
       - git add .
       - git commit -m "Package"
       - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B
+      - auto-changelog -o temp.md -l false
+      - CHANGELOG=$(cat temp.md)
+      - echo $CHANGELOG
+      - git tag -a v$APP_VERSION -m "$(cat temp.md)"
      deploy:
        - provider: heroku
          api-key: 
