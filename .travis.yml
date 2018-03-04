@@ -68,7 +68,9 @@ jobs:
       - git commit -m "Package"
       - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B
       - auto-changelog -o temp.md -l false
-      - git tag -a v$APP_VERSION -m "$(cat temp.md)"
+      - CHANGELOG=$(cat temp.md)
+      - git tag -a v$APP_VERSION -m "$CHANGELOG"
+      - rm temp.md
      deploy:
        - provider: heroku
          api-key: 
