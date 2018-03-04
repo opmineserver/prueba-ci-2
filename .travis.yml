@@ -61,10 +61,10 @@ jobs:
       - cd front-end
       - npm install
       - npm run build
-      #- cd ../back-end
+      - cd ../back-end
       #- rm src/main/resources/.gitignore
       #- git add .
-      - git commit -m "Package"
+      #- git commit -m "Package"
       - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B
      deploy:
        - provider: heroku
