@@ -82,7 +82,7 @@ jobs:
            secure: $GIT_KEY
          file: "target/$APP_NAME-$APP_VERSION.jar"
          skip_cleanup: true
-         body: $CHANGELOG
+         body: "$CHANGELOG"
          on:
            condition: $(git tag -l "$APP_VERSION") != $APP_VERSION
    
