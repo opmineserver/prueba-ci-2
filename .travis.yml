@@ -62,9 +62,9 @@ jobs:
       - npm install
       - npm run build
       - cd ../back-end
-      #- rm src/main/resources/.gitignore
-      #- git add .
-      #- git commit -m "Package"
+      - rm src/main/resources/.gitignore
+      - git add .
+      - git commit -m "Package"
       - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B
      deploy:
        - provider: heroku
@@ -80,5 +80,5 @@ jobs:
          skip_cleanup: true
          name: "$APP_NAME-$APP_VERSION"
          on:
-           condition: $(git tag -l "$APP_VERSION")
+           condition: $(git tag -l "$APP_VERSION") != $APP_VERSION
    
