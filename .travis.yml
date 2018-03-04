@@ -68,8 +68,6 @@ jobs:
       - git commit -m "Package"
       - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B
       - auto-changelog -o temp.md -l false
-      - CHANGELOG=$(cat temp.md)
-      - echo $CHANGELOG
       - git tag -a v$APP_VERSION -m "$(cat temp.md)"
      deploy:
        - provider: heroku
@@ -77,13 +75,11 @@ jobs:
            secure: $HEROKU_API_KEY
          app: $HEROKU_APP_NAME
          strategy: git
-         skip_cleanup: true
        - provider: releases
          api_key:
            secure: $GIT_KEY
          file: "target/$APP_NAME-$APP_VERSION.jar"
          skip_cleanup: true
-         name: "$APP_NAME-$APP_VERSION"
          on:
            condition: $(git tag -l "$APP_VERSION") != $APP_VERSION
    
