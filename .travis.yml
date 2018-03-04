@@ -55,6 +55,9 @@ jobs:
      if: branch = master AND type IN (push)
      before_script:
       - npm install -g @angular/cli
+      - git config --local user.name "$GIT_USER"
+      - git config --local user.email "$GIT_EMAIL"
+      - if [[ $(git tag -l "$APP_VERSION") ]]; then TRAVIS_TAG=$APP_VERSION; fi
      script:
       - cd front-end
       - npm install
@@ -72,9 +75,9 @@ jobs:
          strategy: git
          skip_cleanup: true
        - provider: releases
-         api_key: 
-           secure: $REPOSITORY_API_KEY
-         file: "target/$JAR_NAME"
+         user: $GIT_USER
+         password: $GIT_PASS
+         file: "target/$APP_NAME-$APP_VERSION.jar"
          skip_cleanup: true
          on:
            tags: true

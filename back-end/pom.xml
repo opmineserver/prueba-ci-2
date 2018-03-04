@@ -5,7 +5,7 @@
 
 	<groupId>com.example</groupId>
 	<artifactId>demo</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>${env.APP_VERSION}</version>
 	<packaging>jar</packaging>
 
 
@@ -107,6 +107,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<fileName>${env.APP_NAME}-${env.APP_VERSION}</fileName>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
