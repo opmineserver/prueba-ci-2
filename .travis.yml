@@ -35,7 +35,7 @@ jobs:
       
    ###### TEST POSTGRESQL ######
    - stage: Test
-     if: type IN (pull_request)
+     #if: type IN (pull_request)
      env:
       - AUTO=create-drop
       - DATABASE=jdbc:postgresql://127.0.0.1:5432/test_db
@@ -64,7 +64,7 @@ jobs:
       - git add .
       - git commit -m "Package"
       - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B
-     after_script:
+     #after_script:
       - shopt -s extglob
       - rm -rf !(target)
       - cd target
