@@ -57,14 +57,13 @@ jobs:
       - npm install -g @angular/cli
       - git config --local user.name "$GIT_USER"
       - git config --local user.email "$GIT_EMAIL"
-      - if [[ $(git tag -l "$APP_VERSION") ]]; then TRAVIS_TAG=$APP_VERSION; fi
      script:
       - cd front-end
       - npm install
       - npm run build
-      - cd ../back-end
-      - rm src/main/resources/.gitignore
-      - git add .
+      #- cd ../back-end
+      #- rm src/main/resources/.gitignore
+      #- git add .
       - git commit -m "Package"
       - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B
      deploy:
@@ -79,6 +78,7 @@ jobs:
          password: $GIT_PASS
          file: "target/$APP_NAME-$APP_VERSION.jar"
          skip_cleanup: true
+         name: "$APP_NAME-$APP_VERSION"
          on:
-           tags: true
+           condition: $(git tag -l "$APP_VERSION")
    
