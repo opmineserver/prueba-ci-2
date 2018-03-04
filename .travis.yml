@@ -64,15 +64,6 @@ jobs:
       - git add .
       - git commit -m "Package"
       - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B
-      
-      - shopt -s extglob
-      - rm -rf !(target)
-      - cd target
-      - rm -rf !($JAR_NAME)
-      - cd ..
-      - git add .
-      - git commit -m "Clear"
-      - ls
      before_deploy:
       - git config --local user.name "opmineserver"
       - git config --local user.email "opmineserver@gmail.com"
