@@ -60,6 +60,7 @@ jobs:
       - git config --local user.email "$GIT_EMAIL"
      script:
       - bash auto-changelog.sh
+      - if [[ $(git tag -l "$APP_VERSION") != $APP_VERSION ]]; then git tag -a v$APP_VERSION -m "v$APP_VERSION"; fi
       - cd front-end
       - npm install
       - npm run build
