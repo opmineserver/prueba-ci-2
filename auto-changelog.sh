@@ -2,7 +2,9 @@
 
 if [[ $(git tag -l "$APP_VERSION") != $APP_VERSION ]]; then
 	echo "===================================================================SIIIIIIIIIIIIIIIIIIIII====================================================="
-	git checkout gh-pages
+	git branch
+	git checkout -b gh-pages
+	git branch
 	git fetch
 	mkdir changelogs
 	cd changelogs
