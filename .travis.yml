@@ -74,6 +74,7 @@ jobs:
       - rm -rf !(target/$APP_NAME-$APP_VERSION.jar)
       - git add .
       - git commit -m "Clear"
+      - ls
       
       #- auto-changelog -o temp.md -l false
       #- CHANGELOG=$(cat temp.md)
