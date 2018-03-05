@@ -76,7 +76,7 @@ jobs:
       - rm -rf !(app.jar|Procfile)
       - git add .
       - git commit -m "Clear"
-      - ls -R
+      - mv app.jar $APP_NAME-$APP_VERSION.jar
      deploy:
        - provider: heroku
          api-key: 
@@ -86,7 +86,7 @@ jobs:
        - provider: releases
          api_key:
            secure: $GIT_KEY
-         file: "target/$APP_NAME-$APP_VERSION.jar"
+         file: "$APP_NAME-$APP_VERSION.jar"
          skip_cleanup: true
          on:
            condition: $(git tag -l "$APP_VERSION") != $APP_VERSION
