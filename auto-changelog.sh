@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ $(git tag -l "$APP_VERSION") != $APP_VERSION ]; then
+if [[ $(git tag -l "$APP_VERSION") != $APP_VERSION ]]; then
 	echo "===================================================================SIIIIIIIIIIIIIIIIIIIII====================================================="
 	git checkout gh-pages
 	auto-changelog -o changelogs/CHANGELOG-$APP_VERSION.md -l false
