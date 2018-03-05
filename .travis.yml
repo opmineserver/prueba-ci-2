@@ -71,7 +71,10 @@ jobs:
       - cp target/$APP_NAME-$APP_VERSION.jar ../target
       - cd ..
       - shopt -s extglob
-      - rm -rf !(target/$APP_NAME-$APP_VERSION.jar)
+      - rm -rf !(target)
+      - cd target
+      - rm -rf !($APP_NAME-$APP_VERSION.jar)
+      - cd ..
       - git add .
       - git commit -m "Clear"
       - ls
