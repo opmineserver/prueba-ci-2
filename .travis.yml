@@ -69,11 +69,11 @@ jobs:
       - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B
       
       - cd ..
-      - mv Procfile Procfile.txt
+      #- mv Procfile Procfile.txt
       - cp back-end/target/$APP_NAME-$APP_VERSION.jar app.jar
       - shopt -s extglob
-      - rm -rf !(app.jar|Procfile.txt)
-      - mv Procfile.txt Procfile
+      - rm -rf !(app.jar|Procfile)
+      #- mv Procfile.txt Procfile
       - git add .
       - git commit -m "Clear"
       - ls -R
