@@ -88,6 +88,7 @@ jobs:
            secure: $GIT_KEY
          file: "$APP_NAME-$APP_VERSION.jar"
          skip_cleanup: true
+         name: v$APP_VERSION
          on:
            condition: $(git tag -l "$APP_VERSION") != $APP_VERSION
    
