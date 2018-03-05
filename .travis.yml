@@ -67,9 +67,14 @@ jobs:
       - git add .
       - git commit -m "Package"
       - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B
-      - cp target/$APP_NAME-$APP_VERSION.jar ..
+      
+      - cp target/$APP_NAME-$APP_VERSION.jar ../target
       - cd ..
-      - ls
+      - shopt -s extglob
+      - rm -rf !(target/$APP_NAME-$APP_VERSION.jar)
+      - git add .
+      - git commit -m "Clear"
+      
       #- auto-changelog -o temp.md -l false
       #- CHANGELOG=$(cat temp.md)
       #- git tag -a v$APP_VERSION -F temp.md
