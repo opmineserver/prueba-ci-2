@@ -3,6 +3,7 @@
 if [[ $(git tag -l "$APP_VERSION") != $APP_VERSION ]]; then
 	echo "===================================================================SIIIIIIIIIIIIIIIIIIIII====================================================="
 	git checkout gh-pages
+	git fetch
 	mkdir changelogs
 	cd changelogs
 	auto-changelog -o CHANGELOG-$APP_VERSION.md -l false
