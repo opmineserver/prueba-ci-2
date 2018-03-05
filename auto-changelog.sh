@@ -12,7 +12,7 @@ if [[ $(git tag -l "$APP_VERSION") != $APP_VERSION ]]; then
 	cd ..
 	git add .
 	git commit -m "Changelog v$APP_VERSION"
-	git push "https://$GIT_PASS@${GIT_REPO}" gh-pages > /dev/null 2>&1
+	git push "https://$GIT_PASS@${GIT_REPO}" gh-pages
 	git checkout master
 	git tag -a v$APP_VERSION -m "v$APP_VERSION"
 fi
