@@ -69,14 +69,9 @@ jobs:
       - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B
       
       - cd ..
-      - mkdir target
-      - cp back-end/target/$APP_NAME-$APP_VERSION.jar target/
-      - cp back-end/pom.xml pom.xml
+      - cp back-end/target/$APP_NAME-$APP_VERSION.jar app.jar
       - shopt -s extglob
-      - rm -rf !(target|pom.xml)
-      - cd target
-      - rm -rf !($APP_NAME-$APP_VERSION.jar)
-      - cd ..
+      - rm -rf !(app.jar|Procfile)
       - git add .
       - git commit -m "Clear"
       - ls -R
