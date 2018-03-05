@@ -70,11 +70,10 @@ jobs:
       
       - cd ..
       - mkdir target
-      - ls
       - cp back-end/target/$APP_NAME-$APP_VERSION.jar target/
+      - cp back-end/pom.xml pom.xml
       - shopt -s extglob
-      - rm -rf !(target)
-      - ls -R
+      - rm -rf !(target|pom.xml)
       - cd target
       - rm -rf !($APP_NAME-$APP_VERSION.jar)
       - cd ..
