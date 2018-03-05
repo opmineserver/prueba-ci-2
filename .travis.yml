@@ -70,7 +70,8 @@ jobs:
       
       - cd ..
       - mkdir target
-      - cp back-end/target/$APP_NAME-$APP_VERSION.jar /target/
+      - ls
+      - cp back-end/target/$APP_NAME-$APP_VERSION.jar target/
       - shopt -s extglob
       - rm -rf !(target)
       - ls -R
