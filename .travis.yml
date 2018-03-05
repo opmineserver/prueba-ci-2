@@ -72,13 +72,13 @@ jobs:
       - cd ..
       - shopt -s extglob
       - rm -rf !(target)
-      - ls
+      - ls -R
       - cd target
       - rm -rf !($APP_NAME-$APP_VERSION.jar)
       - cd ..
       - git add .
       - git commit -m "Clear"
-      - ls
+      - ls -R
       
       #- auto-changelog -o temp.md -l false
       #- CHANGELOG=$(cat temp.md)
