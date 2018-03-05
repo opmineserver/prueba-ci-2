@@ -59,6 +59,7 @@ jobs:
       - git config --local user.name "$GIT_USER"
       - git config --local user.email "$GIT_EMAIL"
      script:
+      - bash auto-changelog.sh
       - cd front-end
       - npm install
       - npm run build
@@ -68,20 +69,14 @@ jobs:
       - git commit -m "Package"
       - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B
       
+      # Clear for heroku
       - cd ..
-      #- mv Procfile Procfile.txt
       - cp back-end/target/$APP_NAME-$APP_VERSION.jar app.jar
       - shopt -s extglob
       - rm -rf !(app.jar|Procfile)
-      #- mv Procfile.txt Procfile
       - git add .
       - git commit -m "Clear"
       - ls -R
-      
-      #- auto-changelog -o temp.md -l false
-      #- CHANGELOG=$(cat temp.md)
-      #- git tag -a v$APP_VERSION -F temp.md
-      #- rm temp.md
      deploy:
        - provider: heroku
          api-key: 
@@ -93,7 +88,6 @@ jobs:
            secure: $GIT_KEY
          file: "target/$APP_NAME-$APP_VERSION.jar"
          skip_cleanup: true
-         body: ""
          on:
            condition: $(git tag -l "$APP_VERSION") != $APP_VERSION
    
