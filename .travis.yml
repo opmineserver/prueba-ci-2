@@ -68,13 +68,11 @@ jobs:
       - git commit -m "Package"
       - mvn package -DskipTests=true -Dmaven.javadoc.skip=true -B
       
-      - ls
       - cp target/$APP_NAME-$APP_VERSION.jar ../target
-      - ls
       - cd ..
-      - ls
       - shopt -s extglob
       - rm -rf !(target)
+      - ls
       - cd target
       - rm -rf !($APP_NAME-$APP_VERSION.jar)
       - cd ..
