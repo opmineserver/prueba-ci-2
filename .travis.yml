@@ -58,7 +58,6 @@ jobs:
       - npm install -g auto-changelog
       - git config --local user.name "$GIT_USER"
       - git config --local user.email "$GIT_EMAIL"
-      - git config --local remote.origin.url https://$GIT_USER:$GIT_PASS@github.com/$GIT_REPO.git
      script:
       - bash auto-changelog.sh
       - cd front-end
