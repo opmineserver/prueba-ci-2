@@ -13,5 +13,6 @@ if [[ $(git tag -l "$APP_VERSION") != $APP_VERSION ]]; then
 	git commit -m "Changelog v$APP_VERSION"
 	git push "https://$GIT_KEY@github.com/$GIT_REPO.git"
 	cd ..
+	ls -a
 	cd $GIT_REPO
 fi
