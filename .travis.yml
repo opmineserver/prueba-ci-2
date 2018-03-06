@@ -90,5 +90,5 @@ jobs:
          skip_cleanup: true
          name: $APP_VERSION
          on:
-           condition: DO_RELEASE != "true"
+           condition: -z $DO_RELEASE
    
