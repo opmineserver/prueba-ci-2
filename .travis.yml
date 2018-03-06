@@ -56,7 +56,7 @@ jobs:
      before_script:
       - npm install -g @angular/cli
       - npm install -g auto-changelog
-      - git config --local user.name "$GIT_USER"
+      - git config --local user.name "$GIT_REPO"
       - git config --local user.email "$GIT_EMAIL"
      script:
       - bash auto-changelog.sh
@@ -90,6 +90,7 @@ jobs:
          file: "$APP_NAME-$APP_VERSION.jar"
          skip_cleanup: true
          name: $APP_VERSION
+         body: [CHANGELOG](https://$GIT_USER.github.io/$GIT_REPO/changelogs/CHANGELOG-$APP_VERSION)
          on:
            condition: -z $DO_RELEASE
    
