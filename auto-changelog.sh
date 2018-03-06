@@ -13,6 +13,5 @@ if [[ $(git tag -l "$APP_VERSION") != $APP_VERSION ]]; then
 	git push "https://$GIT_KEY@github.com/$GIT_USER/$GIT_REPO.git"
 	cd ..
 	cd $GIT_REPO
-	git tag -a $APP_VERSION -m "$APP_VERSION"
 	export DO_RELEASE="true"
 fi

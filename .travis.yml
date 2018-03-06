@@ -77,6 +77,7 @@ jobs:
       - git add .
       - git commit -m "Clear"
       - mv app.jar $APP_NAME-$APP_VERSION.jar
+      - if [[ $(git tag -l "$APP_VERSION") != $APP_VERSION ]]; then git tag -a $APP_VERSION -m "$APP_VERSION"; fi
      deploy:
        - provider: heroku
          api-key: 
